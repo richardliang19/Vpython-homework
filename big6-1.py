@@ -19,10 +19,17 @@ ball_m1 = sphere(pos=vector(0,0,0), radius=0.5, color = color.blue, make_trail=T
 ball_m2 = sphere(pos=vector(R,0,0), radius=0.5, color = color.red, make_trail=True)
 ball_m3 = sphere(pos=vector(R/2,((3)**0.5)*R/2,0), radius=0.5, color = color.yellow, make_trail=True)
 
-V0 = (G*m1/(3)**0.5*R)**0.5
+V0 = (G*m1/R)**0.5
 ball_m1_v = vector(V0/2,-((3)**0.5)*V0/2,0)
 ball_m2_v = vector(V0/2,((3)**0.5)*V0/2,0)
 ball_m3_v = vector(-V0,0,0)
+
+F1_arrow = arrow(pos=ball_m1.pos,axis=vec(0,0,0),shaftwidth=0.1 ,color = color.black)
+F13_arrow = arrow(pos=ball_m1.pos,axis=vec(0,0,0),shaftwidth=0.1 ,color = color.blue)
+F12_arrow = arrow(pos=ball_m1.pos,axis=vec(0,0,0),shaftwidth=0.1 ,color = color.red)
+v1_arrow = arrow(pos=ball_m1.pos,axis=vec(0,0,0),shaftwidth=0.1 ,color = color.yellow)
+
+
 """
     3. 執行迴圈
 """
@@ -51,5 +58,17 @@ while True:
     
     ball_m3_v += (-Fg_vector_13-Fg_vector_23)/m3*dt #力生加速度, 產生速度變化
     ball_m3.pos = ball_m3.pos + ball_m3_v*dt #速度產生位置變化
+
+    F1_arrow.pos = ball_m1.pos
+    F1_arrow.axis = (Fg_vector_13+Fg_vector_12)
+
+    F13_arrow.pos = ball_m1.pos
+    F13_arrow.axis = (Fg_vector_13)
+
+    F12_arrow.pos = ball_m1.pos
+    F12_arrow.axis = (Fg_vector_12)
+
+    v1_arrow.pos = ball_m1.pos
+    v1_arrow.axis = ball_m1_v
 
     t = t+dt
