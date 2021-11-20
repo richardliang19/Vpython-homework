@@ -1,10 +1,15 @@
+'''
+    a ball is moving along x-axis, a = 3, v = -2 initially , starting from original point
+    it'll draw this motion x-t graph, v-t graph and a-t graph 
+    also print when it turn and its velocity, position 
+'''
+
 from vpython import *
 
 size = 0.1
 
 scene = canvas(width=600, height=400, center=vector(2.5, 0, 0), background=vector(0, 0, 0))
-# 設定物件視窗的顯示畫面與背景，寬為600畫素、高為400畫素
-# center為畫面中心，background為背景顏色
+#set screen and background
 
 x = arrow(pos=vector(0, 0, 0), axis=vector(1, 0, 0), shaftwidth=0.02, color=color.green)
 y = arrow(pos=vector(0, 0, 0), axis=vector(0, 1, 0), shaftwidth=0.02, color=color.red)
@@ -16,8 +21,7 @@ f1 = gcurve(color=color.blue)
 gd2 = graph(title="v-t plot", width=600, height=400, xtitle="t", ytitle="v")
 f2 = gcurve(color=color.green)
 gd3 = graph(title="a-t plot", width=600, height=400, xtitle="t", ytitle="a")
-# 設定函數圖的畫面
-# 設定函數圖中線條的特性，這裡只設定顏色
+#set func graph
 
 f3 = gcurve(color=color.red)
 dt = 0.001
@@ -29,7 +33,7 @@ while t <= 2:
     ball.v = ball.v + ball.a * dt
     ball.pos = ball.pos + ball.v * dt
 
-    f1.plot(pos=(t, ball.pos.x))  # 每一個迴圈畫一個點描出線條，x軸為時間，y軸為位置
+    f1.plot(pos=(t, ball.pos.x))  #draw graph
     f2.plot(pos=(t, ball.v.x))
     f3.plot(pos=(t, ball.a.x))
 
